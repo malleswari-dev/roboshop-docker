@@ -1,4 +1,4 @@
-FROM node:20.19.5-alpine3.21 AS build
+FROM node:20.19.5-alpine3.21 AS builder
 WORKDIR /opt/server
 COPY package.json .
 COPY *.js .
@@ -15,7 +15,7 @@ LABEL com.project="roboshop" \
       created_by="malleswari"    
 ENV MONGO="true" \
     MONGO_URL="mongodb://mongodb:27017/catalogue"
-COPY --from=build --chown=roboshop:roboshop /opt/server /opt/server
+COPY --from=builder --chown=roboshop:roboshop /opt/server /opt/server
 USER roboshop
 CMD ["server.js"]
 ENTRYPOINT ["node"]
