@@ -1,4 +1,4 @@
-FROM node:20.19.5-alpine3.21 AS build
+FROM node:20.19.5-alpine3.21 AS builder
 WORKDIR /opt/server
 COPY package.json .
 COPY *.js .
@@ -6,7 +6,7 @@ RUN npm install
 
 FROM node:20.19.5-alpine3.21 AS build
 WORKDIR /opt/server
-COPY --from=build /opt/server /opt/server
+COPY --from=builder /opt/server /opt/server
 ENV MONGO="true" \
     MONGO_URL="mongodb://mongodb:27017/catalogue"
 CMD ["node", "server.js"]
