@@ -16,8 +16,7 @@ services:
     - mongodb:/data/db 
 
   redis:
-    build: ./redis
-    image: malleswar1234/redis:7.0
+    image: redis:7.0
     container_name: redis
     volumes:
     - redis:/data
@@ -30,8 +29,7 @@ services:
     - mysql:/var/lib/mysql
 
   rabbitmq:
-    build: ./rabbitmq
-    image: malleswari1234/rabbitmq:3
+    image: rabbitmq:3
     container_name: rabbitmq 
     volumes: # -v rabbitmq:/var/lib/rabbitmq
     - rabbitmq:/var/lib/rabbitmq
